@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+
+class RedirectIfAuthenticated
+{
+    public function handle($request, Closure $next)
+    {
+        if (auth()->check()) {
+            return redirect('/dashboard');
+        }
+
+        return $next($request);
+    }
+}
